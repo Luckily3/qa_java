@@ -3,7 +3,6 @@ import com.example.Feline;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -13,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class FelineTests {
+public class FelineTest {
 
   @Spy
   Feline feline = new Feline();
@@ -37,12 +36,14 @@ public class FelineTests {
   @Test
   public void testGetKittens() {
     Feline feline = new Feline();
-    assertEquals(1, feline.getKittens());
+    int kittens = feline.getKittens();
+    assertEquals(1, kittens);
   }
 
   @Test
   public void testGetKittensMoreThanOne() {
     Feline feline = new Feline();
-    assertEquals(5, feline.getKittens(5));
+    int kittens = feline.getKittens(5);
+    assertEquals(5, kittens);
   }
 }

@@ -1,7 +1,9 @@
 import com.example.Feline;
 import com.example.Lion;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -11,6 +13,9 @@ public class LionParameterizedTest {
   private final String sex;
   private final boolean hasMane;
   private final String noSex = "Используйте допустимые значения пола животного - самец или самка";
+
+  @Rule
+  public ExpectedException expectedException = ExpectedException.none();
 
   public LionParameterizedTest(String sex, final boolean hasMane) {
     this.sex = sex;
@@ -29,11 +34,12 @@ public class LionParameterizedTest {
 
   @Test
   public void testDoesHaveMane() throws Exception {
-    try {
-      Lion lion = new Lion(sex, feline);
-      Assert.assertEquals(hasMane, lion.doesHaveMane());
-    } catch (Exception e) {
-      Assert.assertEquals(noSex, e.getMessage());
+    if ("Оно".equals(sex)) {
+      expectedException.expect(Exception.class);
+      expectedException.expectMessage(noSex);
     }
+    Lion lion = new Lion(sex, feline);
+    Assert.assertEquals(hasMane, lion.doesHaveMane());
   }
 }
+

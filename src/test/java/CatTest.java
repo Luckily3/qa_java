@@ -11,7 +11,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CatTests {
+public class CatTest {
   private Cat cat;
 
   @Mock
